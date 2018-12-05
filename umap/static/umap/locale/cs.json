@@ -1,4 +1,4 @@
-var locale = {
+{
     "Add symbol": "Přidat symbol",
     "Allow scroll wheel zoom?": "Povolit přibližování kolečkem myši?",
     "Automatic": "Automatic",
@@ -366,6 +366,4 @@ var locale = {
     "Popup (large)": "Popup (velký)",
     "Popup content style": "Styl obsahu popupu",
     "Popup shape": "Popup shape"
-};
-L.registerLocale("cs_CZ", locale);
-L.setLocale("cs_CZ");
+}

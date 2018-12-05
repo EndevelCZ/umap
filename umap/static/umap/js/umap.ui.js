@@ -54,6 +54,7 @@ L.U.UI = L.Evented.extend({
                 this.fire('panel:ready');
             }, this);
             L.DomUtil.addClass(this.parent, 'umap-ui');
+            customizeHandlers();
         }
         L.DomEvent.on(closeLink, 'click', this.closePanel, this);
     },

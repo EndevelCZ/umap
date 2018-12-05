@@ -1,5 +1,70 @@
 {% load umap_tags %}
-    <div id="map"></div>
-    <script type="text/javascript">
-        var MAP = new L.U.Map("map", {{ map_settings|notag|safe }});
-    </script>
+<div id="map"></div>
+<script type="text/javascript">
+    var MAP = new L.U.Map("map", {{ map_settings|notag|safe }});
+</script>
+
+
+<script>
+
+    function customizeHandlers() {
+
+        // close all layers
+        var buttons = document.querySelectorAll('.layer-toggle');
+        var openers = buttons.length / 2;
+        for (var i = 0; i < openers; i++) {
+            buttons[i].click();
+        }
+
+        // set toggling of layer for whole divs and spans inside them
+
+        var divs = document.querySelectorAll('.umap-browse-features > div');
+
+        for (i = 0; i < divs.length; i++) {
+            divs[i].addEventListener('click', function (e) {
+                var toggler = e.target.querySelector('.layer-toggle');
+                if (toggler)
+                    toggler.click();
+            }, false);
+        }
+
+        var spans = document.querySelectorAll('.umap-browse-features div h5 span');
+
+        for (i = 0; i < spans.length; i++) {
+            spans[i].addEventListener('click', function (e) {
+                var toggler = e.target.parentNode.querySelector('.layer-toggle');
+                if (toggler)
+                    toggler.click();
+            }, false);
+        }
+
+        // find all markers (i elements) in layer and their color in layer list
+        var is = document.querySelectorAll('i.feature-color');
+
+        for (i = 0; i < is.length; i++) {
+            is[i].parentElement.parentElement.parentElement.firstChild.style.backgroundColor = is[i].style.backgroundColor;
+        }
+
+        // add close all layers button
+        var toolbox = document.body.querySelector('#umap-ui-container .toolbox');
+        var closerSpan = document.createElement('span');
+        closerSpan.innerText = 'Zavřít všechny vrstvy';
+        closerSpan.classList.add('close-all');
+        document.querySelector('#umap-ui-container').insertBefore(closerSpan, toolbox);
+
+        closerSpan.addEventListener('click', function (e) {
+            var closableLayerButtons = document.querySelectorAll('.umap-browse-features > div:not(.off) .layer-toggle');
+
+            for (i = 0; i < closableLayerButtons.length; i++) {
+                closableLayerButtons[i].click();
+            }
+
+        });
+
+        document.getElementById('umap-ui-container').insertAdjacentHTML('beforeend',
+            '<div id="credits">Sestaveno z Leaflet a Django, propojených pomocí projektu uMap.<br>Vyrobila TAH reklamní agentura s.r.o. 2018<br><a href="http://www.tvorba-map.cz" target="_blank">www.tvorba-map.cz</a></div>'
+        )
+    }
+
+</script>
+

@@ -837,3 +837,44 @@ input[type=hidden].blur + .button {
         right: 0;
     }
 }
+
+/* custom overrides */
+
+.close-all{
+    cursor: pointer;
+    float: right;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* custom overrides umap and leaflet storage */
+
+#umap-ui-container{
+   background-attachment: local;
+   background-image: url('./lanskroun.png');    /* TODO get dynamically */
+   background-position: top center;
+   background-repeat: no-repeat;
+   background-size: 100%;
+   padding-top: 100px;
+}
+
+.umap-browse-title{
+   display: none;
+}
+
+#umap-ui-container .toolbox{
+   display: none;
+}
+
+.umap-browse-data > input{
+   display: none;
+}
+
+.leaflet-control-browse.storage-control, .leaflet-control-embed.storage-control{
+   display: none;
+}
+
+#umap-ui-container div.body{
+   height: auto;
+}
