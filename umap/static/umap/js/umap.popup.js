@@ -19,6 +19,9 @@ L.U.Popup = L.Popup.extend({
             klass = L.U.PopupTemplate[mode] || L.U.PopupTemplate.Default;
         this.content = new klass(this.feature, this.container);
         this.content.render();
+
+        this.onElementSelected();
+
         var els = this.container.querySelectorAll('img,iframe');
         for (var i = 0; i < els.length; i++) {
             this.onElementLoaded(els[i]);
@@ -35,6 +38,17 @@ L.U.Popup = L.Popup.extend({
             this._updatePosition();
             this._adjustPan();
         }, this);
+    },
+
+    onElementSelected: function() {
+        // remove active class from other icons
+        const els = document.querySelectorAll(".umap-div-icon");
+
+        [].forEach.call(els, function(el) {
+            el.classList.remove("active");
+        });
+
+        L.DomUtil.addClass(this.feature.options.icon.elements.main, 'active');
     }
 
 });
@@ -88,6 +102,8 @@ L.U.PopupTemplate.Default = L.Class.extend({
     initialize: function (feature, container) {
         this.feature = feature;
         this.container = container;
+
+        this.mobileContainer = L.DomUtil.get('umap-dropdown-content');
     },
 
     renderTitle: function () {},
@@ -130,10 +146,20 @@ L.U.PopupTemplate.Default = L.Class.extend({
 
     render: function () {
         var title = this.renderTitle();
-        if (title) this.container.appendChild(title);
         var body = this.renderBody();
-        if (body) L.DomUtil.add('div', 'umap-popup-content', this.container, body);
-        this.renderFooter();
+
+        // On mobile, do not render pop-up but show it in panel
+        const mediaQueryList = window.matchMedia("(orientation: landscape)"); // Leaflet side panel breakpoint
+
+        if (body && mediaQueryList.matches){
+            L.DomUtil.add('div', 'umap-popup-content', this.container, body);
+            if (title) this.container.appendChild(title);
+            this.renderFooter();
+        }
+        else{
+            if(body)
+                this.mobileContainer.innerHTML = body.innerHTML;
+        }
     }
 
 });
@@ -196,7 +222,7 @@ L.U.PopupTemplate.GeoRSSImage = L.U.PopupTemplate.BaseWithTitle.extend({
             var img = L.DomUtil.create('img', '', container);
             img.src = this.feature.properties.img;
             // Sadly, we are unable to override this from JS the clean way
-            // See https://github.com/Leaflet/Leaflet/commit/61d746818b99d362108545c151a27f09d60960ee#commitcomment-6061847
+                // See https://github.com/Leaflet/Leaflet/commit/61d746818b99d362108545c151a27f09d60960ee#commitcomment-6061847
             img.style.maxWidth = this.options.maxWidth + 'px';
             img.style.maxHeight = this.options.maxWidth + 'px';
             this.onElementLoaded(img);

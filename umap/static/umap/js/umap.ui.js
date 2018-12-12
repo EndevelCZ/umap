@@ -10,14 +10,18 @@ L.U.UI = L.Evented.extend({
     initialize: function (parent) {
         this.parent = parent;
         this.container = L.DomUtil.create('div', 'leaflet-ui-container', this.parent);
+
         L.DomEvent.disableClickPropagation(this.container);
         L.DomEvent.on(this.container, 'contextmenu', L.DomEvent.stopPropagation);  // Do not activate our custom context menu.
         L.DomEvent.on(this.container, 'mousewheel', L.DomEvent.stopPropagation);
         L.DomEvent.on(this.container, 'MozMousePixelScroll', L.DomEvent.stopPropagation);
+
         this._panel = L.DomUtil.create('div', '', this.container);
         this._panel.id = 'umap-ui-container';
+
         this._alert = L.DomUtil.create('div', 'with-transition', this.container);
         this._alert.id = 'umap-alert-container';
+
         this._tooltip = L.DomUtil.create('div', '', this.container);
         this._tooltip.id = 'umap-tooltip-container';
     },
@@ -32,19 +36,23 @@ L.U.UI = L.Evented.extend({
         // by previous ui processes...
         this.resetPanelClassName();
         this._panel.innerHTML = '';
+
         var actionsContainer = L.DomUtil.create('ul', 'toolbox', this._panel);
         var body = L.DomUtil.create('div', 'body', this._panel);
         if (e.data.html.nodeType && e.data.html.nodeType === 1) body.appendChild(e.data.html);
         else body.innerHTML = e.data.html;
+
         var closeLink = L.DomUtil.create('li', 'umap-close-link', actionsContainer);
         L.DomUtil.add('i', 'umap-close-icon', closeLink);
         var label = L.DomUtil.create('span', '', closeLink);
         label.title = label.innerHTML = L._('Close');
+
         if (e.actions) {
             for (var i = 0; i < e.actions.length; i++) {
                 actionsContainer.appendChild(e.actions[i]);
             }
         }
+
         if (e.className) L.DomUtil.addClass(this._panel, e.className);
         if (L.DomUtil.hasClass(this.parent, 'umap-ui')) {
             // Already open.
@@ -54,9 +62,81 @@ L.U.UI = L.Evented.extend({
                 this.fire('panel:ready');
             }, this);
             L.DomUtil.addClass(this.parent, 'umap-ui');
-            customizeHandlers();
+            customizeHandlers();    // TODO write in this file, remove from map init
         }
+
+        this.initCustomHooks();
+
+
         L.DomEvent.on(closeLink, 'click', this.closePanel, this);
+    },
+
+    initCustomHooks: function(){
+        this.initMobileDropdownArea();
+      // // this.setExpandMarkerHandler();
+      //
+      //   // TODO properly
+      //   const togglers = document.querySelectorAll('.layer-toggle')
+      //   for (let i = 0; i < togglers.length; i++) {
+      //       togglers[i].addEventListener("click", function () {
+      //           setExpandMarkerHandler();
+      //       });
+      //   }
+
+    },
+
+    initMobileDropdownArea: function(){
+        const umapContainer = document.getElementById(this._panel.id);
+        const mobileDropdown = L.DomUtil.create('div');
+        mobileDropdown.id = 'umap-dropdown';
+        umapContainer.insertAdjacentElement('afterbegin', mobileDropdown);
+
+        const closer = L.DomUtil.create('a', 'closer');
+        L.DomUtil.addClass(closer, 'leaflet-popup-close-button');
+        closer.href = '#close';
+        closer.innerText = '×';
+        closer.addEventListener('click', this.closeDetail);
+        mobileDropdown.insertAdjacentElement('afterbegin', closer);
+
+        // following two elements must go after each other because of CSS adjacent combinator
+        const moreSpan = L.DomUtil.create('span', 'more-info');
+        moreSpan.id = 'expandToggler';
+        moreSpan.addEventListener('click', this.toggleDropdownArea);
+        L.DomUtil.addClass(moreSpan, 'closed');
+        mobileDropdown.insertAdjacentElement('beforeend', moreSpan);
+
+        const mobileDropdownContent = L.DomUtil.create('div');
+        mobileDropdownContent.id = 'umap-dropdown-content';
+        mobileDropdown.insertAdjacentElement('beforeend', mobileDropdownContent);
+    },
+
+    closeDetail: function () {
+        L.DomUtil.get('umap-dropdown-content').innerHTML = '';
+    },
+
+    // setExpandMarkerHandler: function(){
+    //     // TODO this must be called on every datalayer open
+    //
+    //     const markers = document.querySelectorAll('.umap-div-icon');
+    //
+    //     for (let i = 0; i < markers.length; i++) {
+    //         markers[i].addEventListener("click", function () {
+    //             L.DomUtil.addClass(this, 'active');
+    //         });
+    //     }
+    // },
+
+    toggleDropdownArea: function (){
+        const expandToggler = L.DomUtil.get('expandToggler');
+
+        if(L.DomUtil.hasClass(expandToggler, 'closed')){
+            L.DomUtil.removeClass(expandToggler, 'closed');
+            L.DomUtil.addClass(expandToggler, 'opened');
+        }
+        else{
+            L.DomUtil.removeClass(expandToggler, 'opened');
+            L.DomUtil.addClass(expandToggler, 'closed');
+        }
     },
 
     closePanel: function () {
@@ -175,3 +255,18 @@ L.U.UI = L.Evented.extend({
     },
 
 });
+//
+//
+// function setExpandMarkerHandler(){
+//         // TODO this must be called on every datalayer open
+//
+//         const markers = document.querySelectorAll('.umap-div-icon');
+//
+//         for (let i = 0; i < markers.length; i++) {
+//             markers[i].addEventListener("click", function () {
+//                 L.DomUtil.addClass(this, 'active');
+//                 console.log('something');
+//             });
+//         }
+//     }
+//
