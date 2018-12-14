@@ -1503,92 +1503,97 @@ L.U.Map.include({
     },
 
     setContextMenuItems: function (e) {
-        var items = [];
-        if (this._zoom !== this.getMaxZoom()) {
-            items.push({
-                text: L._('Zoom in'),
-                callback: function () {this.zoomIn();}
-            });
-        }
-        if (this._zoom !== this.getMinZoom()) {
-            items.push({
-                text: L._('Zoom out'),
-                callback: function () {this.zoomOut();}
-            });
-        }
-        if (e && e.relatedTarget) {
-            if (e.relatedTarget.getContextMenuItems) {
-                items = items.concat(e.relatedTarget.getContextMenuItems(e));
-            }
-        }
-        if (this.options.allowEdit) {
-            items.push('-');
-            if (this.editEnabled) {
-                if (!this.isDirty) {
-                    items.push({
-                        text: L._('Stop editing') + ' (Ctrl+E)',
-                        callback: this.disableEdit
-                    });
-                }
-                if (this.options.enableMarkerDraw) {
-                    items.push(
-                        {
-                            text: L._('Draw a marker') + ' (Ctrl-M)',
-                            callback: this.startMarker,
-                            context: this
-                        });
-                }
-                if (this.options.enablePolylineDraw) {
-                    items.push(
-                        {
-                            text: L._('Draw a polygon') + ' (Ctrl-P)',
-                            callback: this.startPolygon,
-                            context: this
-                        });
-                }
-                if (this.options.enablePolygonDraw) {
-                    items.push(
-                      {
-                           text: L._('Draw a line') + ' (Ctrl-L)',
-                           callback: this.startPolyline,
-                           context: this
-                       });
-                }
-                items.push('-');
-                items.push({
-                    text: L._('Help'),
-                    callback: function () { this.help.show('edit');}
-                });
-            } else {
-                items.push({
-                    text: L._('Start editing') + ' (Ctrl+E)',
-                    callback: this.enableEdit
-                });
-            }
-        }
-        items.push('-',
-            {
-                text: L._('Browse data'),
-                callback: this.openBrowser
-            },
-            {
-                text: L._('About'),
-                callback: this.displayCaption
-            },
-            {
-                text: L._('Search location'),
-                callback: this.search
-            }
-        );
-        if (this.options.urls.routing) {
-            items.push('-',
-                {
-                    text: L._('Directions from here'),
-                    callback: this.openExternalRouting
-                }
-            );
-        }
-        this.options.contextmenuItems = items;
+
+        return [];
+
+        // disabled on demand
+
+        // var items = [];
+        // if (this._zoom !== this.getMaxZoom()) {
+        //     items.push({
+        //         text: L._('Zoom in'),
+        //         callback: function () {this.zoomIn();}
+        //     });
+        // }
+        // if (this._zoom !== this.getMinZoom()) {
+        //     items.push({
+        //         text: L._('Zoom out'),
+        //         callback: function () {this.zoomOut();}
+        //     });
+        // }
+        // if (e && e.relatedTarget) {
+        //     if (e.relatedTarget.getContextMenuItems) {
+        //         items = items.concat(e.relatedTarget.getContextMenuItems(e));
+        //     }
+        // }
+        // if (this.options.allowEdit) {
+        //     items.push('-');
+        //     if (this.editEnabled) {
+        //         if (!this.isDirty) {
+        //             items.push({
+        //                 text: L._('Stop editing') + ' (Ctrl+E)',
+        //                 callback: this.disableEdit
+        //             });
+        //         }
+        //         if (this.options.enableMarkerDraw) {
+        //             items.push(
+        //                 {
+        //                     text: L._('Draw a marker') + ' (Ctrl-M)',
+        //                     callback: this.startMarker,
+        //                     context: this
+        //                 });
+        //         }
+        //         if (this.options.enablePolylineDraw) {
+        //             items.push(
+        //                 {
+        //                     text: L._('Draw a polygon') + ' (Ctrl-P)',
+        //                     callback: this.startPolygon,
+        //                     context: this
+        //                 });
+        //         }
+        //         if (this.options.enablePolygonDraw) {
+        //             items.push(
+        //               {
+        //                    text: L._('Draw a line') + ' (Ctrl-L)',
+        //                    callback: this.startPolyline,
+        //                    context: this
+        //                });
+        //         }
+        //         items.push('-');
+        //         items.push({
+        //             text: L._('Help'),
+        //             callback: function () { this.help.show('edit');}
+        //         });
+        //     } else {
+        //         items.push({
+        //             text: L._('Start editing') + ' (Ctrl+E)',
+        //             callback: this.enableEdit
+        //         });
+        //     }
+        // }
+        // items.push('-',
+        //     {
+        //         text: L._('Browse data'),
+        //         callback: this.openBrowser
+        //     },
+        //     {
+        //         text: L._('About'),
+        //         callback: this.displayCaption
+        //     },
+        //     {
+        //         text: L._('Search location'),
+        //         callback: this.search
+        //     }
+        // );
+        // if (this.options.urls.routing) {
+        //     items.push('-',
+        //         {
+        //             text: L._('Directions from here'),
+        //             callback: this.openExternalRouting
+        //         }
+        //     );
+        // }
+        // this.options.contextmenuItems = items;
     },
 
     openExternalRouting: function (e) {
