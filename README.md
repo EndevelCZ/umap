@@ -103,6 +103,23 @@ umap migrate
 
 ```
 
+# Nasazení nové verze
+```
+ssh 94.177.160.90 -lroot
+
+source /srv/umap/venv/bin/activate
+pip install git+https://github.com/EndevelCZ/umap --upgrade
+umap collectstatic
+service uwsgi restart
+```
+
+# Spuštění pgAdmin
+```
+cd ~/.pgadmin4/lib/python3.5/site-packages/pgadmin4
+python pgAdmin4.py
+```
+
+pak běží na poznejlanskroun.cz:5050
 
 # FAQ
 ERROR při migraci s geosem - https://stackoverflow.com/a/18721622/7113416
