@@ -6,7 +6,7 @@ umap/remote_static
 .idea
 tmp/*
 node_modules/*
-umap/static/umap/vendor
+# umap/static/umap/vendor
 static/
 media/
 
