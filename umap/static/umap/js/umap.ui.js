@@ -255,18 +255,3 @@ L.U.UI = L.Evented.extend({
     },
 
 });
-//
-//
-// function setExpandMarkerHandler(){
-//         // TODO this must be called on every datalayer open
-//
-//         const markers = document.querySelectorAll('.umap-div-icon');
-//
-//         for (let i = 0; i < markers.length; i++) {
-//             markers[i].addEventListener("click", function () {
-//                 L.DomUtil.addClass(this, 'active');
-//                 console.log('something');
-//             });
-//         }
-//     }
-//
