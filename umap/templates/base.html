@@ -4,9 +4,8 @@
 <head>
     <title>{% block head_title %}{{ SITE_NAME }}{% endblock %}</title>
     <meta charset="utf-8">
-    {% block extra_head %}
-    {% endblock extra_head %}
-
+    {% block extra_head %}{% endblock extra_head %}
+    <link rel="icon" href="{{ STATIC_URL }}umap/favicon.png" type="image/png" sizes="32x32"> {# TODO setting per site #}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body class="{% block body_class %}{% endblock %}">
