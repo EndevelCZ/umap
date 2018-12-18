@@ -66,6 +66,7 @@
         for (i = 0; i < features.length; i++) {
             features[i].addEventListener('click', function (e) {
                 if (window.matchMedia("(orientation: portrait)").matches)
+                    e.target.querySelector('.feature-title').click();
                     document.getElementById('umap-ui-container').scrollTop = 0;
             }, false);
         }
