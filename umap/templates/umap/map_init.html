@@ -61,6 +61,15 @@
 
         });
 
+        // scroll panel div to its top on marker feature click
+        var features = document.querySelectorAll('li.marker.feature');
+        for (i = 0; i < features.length; i++) {
+            features[i].addEventListener('click', function (e) {
+                if (window.matchMedia("(orientation: portrait)").matches)
+                    document.getElementById('umap-ui-container').scrollTop = 0;
+            }, false);
+        }
+
         document.getElementById('umap-ui-container').insertAdjacentHTML('beforeend',
             '<div id="credits">Sestaveno z Leaflet a Django, propojených pomocí projektu uMap.<br>Vyrobila TAH reklamní agentura s.r.o. 2018<br><a href="http://www.tvorba-map.cz" target="_blank">www.tvorba-map.cz</a></div>'
         )
