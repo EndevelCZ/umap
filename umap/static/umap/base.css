@@ -791,12 +791,16 @@ input[type=hidden].blur + .button {
 /* custom overrides */
 #umap-ui-container {
   background-attachment: local;
-  background-image: url("./lanskroun.png");
+  background-image: url("./logos/lanskroun.png");
   /* TODO get dynamically */
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 100%;
   padding-top: 100px; }
+  @media (max-width: 1280px) {
+    #umap-ui-container {
+      background-image: url("./logos/lanskroun-mobile.png");
+      padding-top: 50px; } }
   #umap-ui-container .close-all {
     color: #444;
     cursor: pointer;
