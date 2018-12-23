@@ -7,8 +7,9 @@ umap/remote_static
 tmp/*
 node_modules/*
 # umap/static/umap/vendor
-static/
+/static/
 media/
+.sass-cache
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
