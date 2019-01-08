@@ -1073,8 +1073,11 @@ input[type=hidden].blur + .button {
       *{
         max-width: 100%;
       }
-    }
 
+      h3{
+        max-width: calc(100% - 80px);
+      }
+    }
   }
 }
 

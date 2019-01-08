@@ -681,13 +681,23 @@ a.add-datalayer:hover {
   margin-bottom: 0;
   overflow: hidden;
   padding-left: 5px; }
+  @media (orientation: portrait) {
+    .umap-browse-features h5 {
+      font-size: 14px;
+      height: 36px;
+      line-height: 36px; } }
   .umap-browse-features h5 span {
     margin-left: 10px; }
 .umap-browse-features li {
   padding: 2px 0;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+  @media (orientation: portrait) {
+    .umap-browse-features li {
+      padding: 5px 0; }
+      .umap-browse-features li .feature-title {
+        font-size: 13px; } }
   .umap-browse-features li:nth-child(even) {
     background-color: #f8f8f3; }
 .umap-browse-features .feature-color {

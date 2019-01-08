@@ -853,6 +853,8 @@ input[type=hidden].blur + .button {
       max-height: unset; }
     #umap-ui-container #umap-dropdown #umap-dropdown-content * {
       max-width: 100%; }
+    #umap-ui-container #umap-dropdown #umap-dropdown-content h3 {
+      max-width: calc(100% - 80px); }
 
 .umap-browse-title, #umap-ui-container .toolbox, .umap-browse-data > input, .leaflet-control-browse.storage-control, .leaflet-control-embed.storage-control {
   display: none; }

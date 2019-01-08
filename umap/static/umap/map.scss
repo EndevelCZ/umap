@@ -886,15 +886,31 @@ a.add-datalayer {
     margin-bottom: 0;
     overflow: hidden;
     padding-left: 5px;
+
+    @media (orientation: portrait) {
+      font-size: 14px;
+      height: 36px;
+      line-height: 36px;
+    }
+
     span {
       margin-left: 10px;
     }
   }
   li {
     padding: 2px 0;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @media (orientation: portrait) {
+      padding: 5px 0;
+
+      .feature-title{
+        font-size: 13px;
+      }
+    }
+
     &:nth-child(even) {
       background-color: #f8f8f3;
     }
