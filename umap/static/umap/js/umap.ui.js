@@ -112,6 +112,7 @@ L.U.UI = L.Evented.extend({
 
     closeDetail: function () {
         L.DomUtil.get('umap-dropdown-content').innerHTML = '';
+        document.querySelector('.leaflet-marker-pane .active').classList.remove('active');
     },
 
     // setExpandMarkerHandler: function(){
