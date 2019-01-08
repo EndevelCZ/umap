@@ -792,7 +792,7 @@ input[type=hidden].blur + .button {
 @media (orientation: portrait) {
   .leaflet-ui-container {
     bottom: 0;
-    height: 200px;
+    height: 300px;
     position: fixed;
     width: 100%;
     z-index: 1000; } }

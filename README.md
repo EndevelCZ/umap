@@ -109,7 +109,7 @@ ssh 94.177.160.90 -lroot
 
 source /srv/umap/venv/bin/activate
 pip install git+https://github.com/EndevelCZ/umap --upgrade
-umap collectstatic
+umap collectstatic --no-input
 service uwsgi restart
 ```
 
