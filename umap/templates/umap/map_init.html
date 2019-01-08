@@ -62,11 +62,22 @@
         });
 
         // scroll panel div to its top on marker feature click
-        var features = document.querySelectorAll('li.marker.feature');
+        var features = document.querySelectorAll('li.marker.feature, li.marker.feature span, li.marker.feature i');
         for (i = 0; i < features.length; i++) {
             features[i].addEventListener('click', function (e) {
                 if (window.matchMedia("(orientation: portrait)").matches)
                     e.target.querySelector('.feature-title').click();
+                    document.getElementById('umap-ui-container').scrollTop = 0;
+            }, false);
+        }
+
+        // scroll panel div to its top on marker feature click of child elements
+        features = document.querySelectorAll('li.marker.feature *');
+        for (i = 0; i < features.length; i++) {
+            features[i].addEventListener('click', function (e) {
+                if (window.matchMedia("(orientation: portrait)").matches)
+                    if(!L.DomUtil.hasClass(e.target, 'feature-title'))
+                        e.target.closest('li').querySelector('.feature-title').click();
                     document.getElementById('umap-ui-container').scrollTop = 0;
             }, false);
         }
