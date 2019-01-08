@@ -10,6 +10,9 @@
   bottom: 0;
   left: 0;
   right: 0; }
+  @media (max-width: 1280px) {
+    #map {
+      height: calc(100% - 200px); } }
 
 /* *********** */
 /* Controls    */
@@ -959,6 +962,17 @@ a.add-datalayer:hover {
   .umap-drop-icon .icon_container img {
     vertical-align: middle;
     max-width: 24px !important; }
+.umap-drop-icon.active .icon_container {
+  margin-left: -4px;
+  margin-top: -8px;
+  height: 40px;
+  line-height: 40px;
+  width: 40px; }
+.umap-drop-icon.active .icon_arrow {
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #2270b5;
+  left: 5px; }
 
 .umap-div-icon .icon_container span, .umap-drop-icon .icon_container span {
   vertical-align: middle;

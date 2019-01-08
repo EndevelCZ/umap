@@ -42,7 +42,7 @@ L.U.Popup = L.Popup.extend({
 
     onElementSelected: function() {
         // remove active class from other icons
-        const els = document.querySelectorAll('[id^="umap"][id$="icon"]');
+        const els = document.querySelector('.leaflet-marker-pane').childNodes;
 
         [].forEach.call(els, function(el) {
             el.classList.remove("active");

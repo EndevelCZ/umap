@@ -774,7 +774,7 @@ input[type=hidden].blur + .button {
 /* *********** */
 @media all and (orientation: portrait) {
   .umap-ui #umap-ui-container {
-    height: 50%;
+    height: 100%;
     max-height: 400px;
     width: 100%;
     top: inherit !important;
@@ -789,10 +789,17 @@ input[type=hidden].blur + .button {
     left: 0;
     right: 0; } }
 /* custom overrides */
+@media (orientation: portrait) {
+  .leaflet-ui-container {
+    bottom: 0;
+    height: 200px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000; } }
 #umap-ui-container {
   background-attachment: local;
   background-image: url("./logos/lanskroun.png");
-  /* TODO get dynamically */
+  /* TODO get logosc dynamically */
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 100%;
