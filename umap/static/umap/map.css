@@ -940,11 +940,7 @@ a.add-datalayer:hover {
   opacity: 0.9;
   /*box-shadow: 4px 8px 6px -3px black;*/ }
 .umap-div-icon.active .icon_container {
-  margin-left: -4px;
-  margin-top: -8px;
-  height: 40px;
-  line-height: 40px;
-  width: 40px; }
+  animation: active 0.8s ease-in-out alternate infinite; }
 .umap-div-icon.active .icon_arrow {
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
@@ -973,17 +969,28 @@ a.add-datalayer:hover {
     vertical-align: middle;
     max-width: 24px !important; }
 .umap-drop-icon.active .icon_container {
-  margin-left: -4px;
-  margin-top: -8px;
-  height: 40px;
-  line-height: 40px;
-  width: 40px; }
+  animation: active 0.8s ease-in-out alternate infinite; }
 .umap-drop-icon.active .icon_arrow {
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-top: 12px solid #2270b5;
   left: 5px; }
 
+@keyframes active {
+  from {
+    margin: 0;
+    height: 32px;
+    line-height: 32px;
+    opacity: 0.9;
+    text-align: center;
+    width: 32px; }
+  to {
+    height: 36px;
+    line-height: 36px;
+    margin-left: -1px;
+    margin-top: -2px;
+    opacity: 1;
+    width: 36px; } }
 .umap-div-icon .icon_container span, .umap-drop-icon .icon_container span {
   vertical-align: middle;
   color: white;

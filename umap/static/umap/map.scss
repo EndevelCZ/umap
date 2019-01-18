@@ -1220,11 +1220,7 @@ a.add-datalayer {
   }
   &.active{
     .icon_container{
-      margin-left: -4px;
-      margin-top: -8px;
-      height: 40px;
-      line-height: 40px;
-      width: 40px;
+      animation: active 0.8s ease-in-out alternate infinite;
     }
     .icon_arrow{
       border-left: 12px solid transparent;
@@ -1262,11 +1258,15 @@ a.add-datalayer {
   }
   &.active{
     .icon_container{
-      margin-left: -4px;
-      margin-top: -8px;
-      height: 40px;
-      line-height: 40px;
-      width: 40px;
+      animation: active 0.8s ease-in-out alternate infinite;
+
+      // fallback
+      //margin-left: -4px;
+      //margin-top: -8px;
+      //opacity: 1;
+      //height: 40px;
+      //line-height: 40px;
+      //width: 40px;
     }
     .icon_arrow{
       border-left: 12px solid transparent;
@@ -1274,6 +1274,25 @@ a.add-datalayer {
       border-top: 12px solid #2270b5;
       left: 5px;
     }
+  }
+}
+
+@keyframes active {
+  from{
+    margin: 0;
+    height: 32px;
+    line-height: 32px;
+    opacity: 0.9;
+    text-align: center;
+    width: 32px;
+  }
+  to{
+    height: 36px;
+    line-height: 36px;
+    margin-left: -1px;
+    margin-top: -2px;
+    opacity: 1;
+    width: 36px;
   }
 }
 
