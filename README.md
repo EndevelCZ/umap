@@ -121,6 +121,23 @@ python pgAdmin4.py
 
 pak běží na poznejlanskroun.cz:5050
 
+# HTTPS (Debian 8, nginx)
+Jako root (nemusí, ale na serveru jiný není), cerbot-auto stažený ve složce uživatele (`/root/`)
+```
+apt-get remove certbot
+
+wget https://dl.eff.org/certbot-auto
+chmod a+x certbot-auto
+
+~/certbot-auto --nginx
+```
+
+Automatické obnovování v random čase dvakrát za den (`crontab -e`)
+```
+0 0,12 * * * python -c 'import random; import time; time.sleep(random.random() * 3600)' && ~/certbot-auto renew 
+```
+
+
 # FAQ
 ERROR při migraci s geosem - https://stackoverflow.com/a/18721622/7113416
 
