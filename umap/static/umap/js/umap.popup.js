@@ -48,7 +48,8 @@ L.U.Popup = L.Popup.extend({
             el.classList.remove("active");
         });
 
-        L.DomUtil.addClass(this.feature.options.icon.elements.main, 'active');
+        if(this.feature.options.icon)
+            L.DomUtil.addClass(this.feature.options.icon.elements.main, 'active');
     }
 
 });
