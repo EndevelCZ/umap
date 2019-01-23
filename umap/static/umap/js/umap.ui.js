@@ -62,6 +62,7 @@ L.U.UI = L.Evented.extend({
                 this.fire('panel:ready');
             }, this);
             L.DomUtil.addClass(this.parent, 'umap-ui');
+
             customizeHandlers();    // TODO write in this file, remove from map init
         }
 

@@ -62,7 +62,7 @@
         });
 
         // scroll panel div to its top on marker feature click
-        var features = document.querySelectorAll('li.marker.feature, li.marker.feature span, li.marker.feature i');
+        var features = document.querySelectorAll('.umap-browse-features li.feature');
         for (i = 0; i < features.length; i++) {
             features[i].addEventListener('click', function (e) {
                 if (window.matchMedia("(orientation: portrait)").matches)
@@ -72,7 +72,7 @@
         }
 
         // scroll panel div to its top on marker feature click of child elements
-        features = document.querySelectorAll('li.marker.feature *');
+        features = document.querySelectorAll('.umap-browse-features li.feature *');
         for (i = 0; i < features.length; i++) {
             features[i].addEventListener('click', function (e) {
                 if (window.matchMedia("(orientation: portrait)").matches)
